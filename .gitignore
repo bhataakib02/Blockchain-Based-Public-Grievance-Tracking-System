@@ -1,0 +1,54 @@
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+build/
+.vite/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Testing & Coverage
+coverage/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE & OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Hardhat / Truffle / Foundry build artifacts
+artifacts/
+cache/
+typechain/
+out/
+
+# Uploads & Temporary files
+backend/uploads/
+scratch/
+
+
+.txt
