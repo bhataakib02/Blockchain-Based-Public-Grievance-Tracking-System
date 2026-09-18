@@ -1,0 +1,93 @@
+[
+  {
+    "inputs": [{ "internalType": "address", "name": "initialOwner", "type": "address" }],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "recordIndex", "type": "uint256" },
+      { "indexed": true, "internalType": "uint256", "name": "grievanceId", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "actor", "type": "address" },
+      { "indexed": false, "internalType": "bytes32", "name": "action", "type": "bytes32" },
+      { "indexed": false, "internalType": "bytes32", "name": "dataHash", "type": "bytes32" },
+      { "indexed": false, "internalType": "uint64", "name": "timestamp", "type": "uint64" }
+    ],
+    "name": "AuditAppended",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": true, "internalType": "address", "name": "writer", "type": "address" }],
+    "name": "WriterAuthorized",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "grievanceId", "type": "uint256" },
+      { "internalType": "address", "name": "actor", "type": "address" },
+      { "internalType": "bytes32", "name": "action", "type": "bytes32" },
+      { "internalType": "bytes32", "name": "dataHash", "type": "bytes32" }
+    ],
+    "name": "append",
+    "outputs": [{ "internalType": "uint256", "name": "index", "type": "uint256" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "account", "type": "address" }],
+    "name": "authorizeWriter",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "getGrievanceRecordIndexes",
+    "outputs": [{ "internalType": "uint256[]", "name": "", "type": "uint256[]" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "index", "type": "uint256" }],
+    "name": "getRecord",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "grievanceId", "type": "uint256" },
+          { "internalType": "address", "name": "actor", "type": "address" },
+          { "internalType": "bytes32", "name": "action", "type": "bytes32" },
+          { "internalType": "bytes32", "name": "dataHash", "type": "bytes32" },
+          { "internalType": "uint64", "name": "timestamp", "type": "uint64" }
+        ],
+        "internalType": "struct GrievanceTypes.AuditRecord",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "recordCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "writer",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

@@ -1,0 +1,245 @@
+[
+  {
+    "inputs": [
+      { "internalType": "contract IRoleManager", "name": "roleManager", "type": "address" },
+      { "internalType": "contract DepartmentManager", "name": "departmentManager", "type": "address" },
+      { "internalType": "contract EscalationManager", "name": "escalationManager", "type": "address" },
+      { "internalType": "contract AuditTrail", "name": "trail", "type": "address" }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "officer", "type": "address" },
+      { "indexed": true, "internalType": "address", "name": "actor", "type": "address" }
+    ],
+    "name": "GrievanceAssigned",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "citizen", "type": "address" },
+      { "indexed": true, "internalType": "bytes32", "name": "department", "type": "bytes32" },
+      { "indexed": false, "internalType": "bytes32", "name": "title", "type": "bytes32" },
+      { "indexed": false, "internalType": "bytes32", "name": "category", "type": "bytes32" },
+      { "indexed": false, "internalType": "enum GrievanceTypes.Priority", "name": "priority", "type": "uint8" }
+    ],
+    "name": "GrievanceCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "actor", "type": "address" },
+      { "indexed": false, "internalType": "bytes32", "name": "reasonHash", "type": "bytes32" },
+      { "indexed": false, "internalType": "uint32", "name": "level", "type": "uint32" }
+    ],
+    "name": "GrievanceEscalated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "actor", "type": "address" },
+      { "indexed": false, "internalType": "bytes32", "name": "reasonHash", "type": "bytes32" },
+      { "indexed": false, "internalType": "uint32", "name": "reopenCount", "type": "uint32" }
+    ],
+    "name": "GrievanceReopened",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "citizen", "type": "address" },
+      { "indexed": false, "internalType": "bytes32", "name": "reasonHash", "type": "bytes32" }
+    ],
+    "name": "ResolutionRejected",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "officer", "type": "address" },
+      { "indexed": false, "internalType": "bytes32", "name": "resolutionHash", "type": "bytes32" }
+    ],
+    "name": "ResolutionSubmitted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": true, "internalType": "address", "name": "citizen", "type": "address" },
+      { "indexed": false, "internalType": "bytes32", "name": "feedbackHash", "type": "bytes32" }
+    ],
+    "name": "ResolutionVerified",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "indexed": false, "internalType": "enum GrievanceTypes.Status", "name": "previousStatus", "type": "uint8" },
+      { "indexed": false, "internalType": "enum GrievanceTypes.Status", "name": "newStatus", "type": "uint8" },
+      { "indexed": true, "internalType": "address", "name": "actor", "type": "address" },
+      { "indexed": false, "internalType": "bytes32", "name": "evidenceHash", "type": "bytes32" }
+    ],
+    "name": "StatusUpdated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "address", "name": "officer", "type": "address" }
+    ],
+    "name": "assignGrievance",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "auditTrail",
+    "outputs": [{ "internalType": "contract AuditTrail", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "bytes32", "name": "title", "type": "bytes32" },
+      { "internalType": "bytes32", "name": "descriptionHash", "type": "bytes32" },
+      { "internalType": "bytes32", "name": "category", "type": "bytes32" },
+      { "internalType": "bytes32", "name": "department", "type": "bytes32" },
+      { "internalType": "enum GrievanceTypes.Priority", "name": "priority", "type": "uint8" }
+    ],
+    "name": "createGrievance",
+    "outputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "departments",
+    "outputs": [{ "internalType": "contract DepartmentManager", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "bytes32", "name": "reasonHash", "type": "bytes32" }
+    ],
+    "name": "escalateGrievance",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "escalations",
+    "outputs": [{ "internalType": "contract EscalationManager", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "getGrievance",
+    "outputs": [
+      {
+        "components": [
+          { "internalType": "uint256", "name": "id", "type": "uint256" },
+          { "internalType": "bytes32", "name": "title", "type": "bytes32" },
+          { "internalType": "bytes32", "name": "descriptionHash", "type": "bytes32" },
+          { "internalType": "bytes32", "name": "category", "type": "bytes32" },
+          { "internalType": "bytes32", "name": "department", "type": "bytes32" },
+          { "internalType": "enum GrievanceTypes.Priority", "name": "priority", "type": "uint8" },
+          { "internalType": "address", "name": "citizen", "type": "address" },
+          { "internalType": "uint64", "name": "timestamp", "type": "uint64" },
+          { "internalType": "enum GrievanceTypes.Status", "name": "status", "type": "uint8" },
+          { "internalType": "address", "name": "assignedOfficer", "type": "address" },
+          { "internalType": "bytes32", "name": "resolutionHash", "type": "bytes32" },
+          { "internalType": "uint32", "name": "reopenCount", "type": "uint32" }
+        ],
+        "internalType": "struct GrievanceTypes.Grievance",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "grievanceCount",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "bytes32", "name": "reasonHash", "type": "bytes32" }
+    ],
+    "name": "rejectResolution",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "bytes32", "name": "reasonHash", "type": "bytes32" }
+    ],
+    "name": "reopenGrievance",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "roles",
+    "outputs": [{ "internalType": "contract IRoleManager", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "bytes32", "name": "resolutionHash", "type": "bytes32" }
+    ],
+    "name": "submitResolution",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "enum GrievanceTypes.Status", "name": "newStatus", "type": "uint8" },
+      { "internalType": "bytes32", "name": "evidenceHash", "type": "bytes32" }
+    ],
+    "name": "updateStatus",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "bytes32", "name": "feedbackHash", "type": "bytes32" }
+    ],
+    "name": "verifyResolution",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "inputs": [{ "internalType": "contract IRoleManager", "name": "roleManager", "type": "address" }],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": true, "internalType": "uint256", "name": "grievanceId", "type": "uint256" }, { "indexed": false, "internalType": "uint64", "name": "deadline", "type": "uint64" }],
+    "name": "DeadlineStarted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "uint256", "name": "grievanceId", "type": "uint256" },
+      { "indexed": false, "internalType": "uint32", "name": "level", "type": "uint32" },
+      { "indexed": false, "internalType": "uint64", "name": "nextDeadline", "type": "uint64" }
+    ],
+    "name": "EscalationRecorded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": true, "internalType": "address", "name": "system", "type": "address" }],
+    "name": "GrievanceSystemBound",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": true, "internalType": "enum GrievanceTypes.Priority", "name": "priority", "type": "uint8" },
+      { "indexed": false, "internalType": "uint64", "name": "secondsAllowed", "type": "uint64" }
+    ],
+    "name": "SLAConfigured",
+    "type": "event"
+  },
+  {
+    "inputs": [{ "internalType": "address", "name": "system", "type": "address" }],
+    "name": "bindGrievanceSystem",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "enum GrievanceTypes.Priority", "name": "priority", "type": "uint8" },
+      { "internalType": "uint64", "name": "secondsAllowed", "type": "uint64" }
+    ],
+    "name": "configureSLA",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "deadline",
+    "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "escalationLevel",
+    "outputs": [{ "internalType": "uint32", "name": "", "type": "uint32" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "grievanceSystem",
+    "outputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "uint256", "name": "id", "type": "uint256" }],
+    "name": "isOverdue",
+    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "enum GrievanceTypes.Priority", "name": "priority", "type": "uint8" },
+      { "internalType": "bool", "name": "force", "type": "bool" }
+    ],
+    "name": "recordEscalation",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "roles",
+    "outputs": [{ "internalType": "contract IRoleManager", "name": "", "type": "address" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [{ "internalType": "enum GrievanceTypes.Priority", "name": "", "type": "uint8" }],
+    "name": "slaSeconds",
+    "outputs": [{ "internalType": "uint64", "name": "", "type": "uint64" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "id", "type": "uint256" },
+      { "internalType": "enum GrievanceTypes.Priority", "name": "priority", "type": "uint8" }
+    ],
+    "name": "startDeadline",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]
